@@ -1,0 +1,3 @@
+1516638986128|55|statement|connection 9|select relname from pg_class where relkind='S'|
+1516653904321|62|statement|connection 9|select relname from pg_class where relkind='S'|
+1516653904369|33|statement|connection 8|create table companies (id  bigserial not null, created_at timestamp, modified_at timestamp, name varchar(255), primary key (id))|
