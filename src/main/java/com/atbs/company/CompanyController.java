@@ -29,7 +29,7 @@ public class CompanyController {
         service.create(item);
     }
 
-    @RequestMapping("/{id}")
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public Company update(@PathVariable Long id, @RequestBody CompanyItem item) {
         return service.update(id, item);
     }
