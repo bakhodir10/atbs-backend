@@ -4,13 +4,20 @@ import com.atbs.company.Company;
 import com.atbs.user.User;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table (name = "companyAdminsUser")
+@Table(name = "companyAdminsUser")
 public class CompanyAdminUser extends User {
-    @OneToOne(fetch = FetchType.EAGER, mappedBy = "company")
+    @ManyToOne
     private Company company;
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
 }
