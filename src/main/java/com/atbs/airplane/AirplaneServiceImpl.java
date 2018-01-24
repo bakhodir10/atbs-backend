@@ -38,6 +38,6 @@ public class AirplaneServiceImpl extends BaseServiceImpl<Airplane> implements Ai
     }
 
     private void validate(AirplaneItem item, Airplane airplane) {
-        if (!item.getName().isEmpty()) airplane.setName(item.getName());
+//        if (!item.getName().isEmpty()) airplane.setName(item.getName());
     }
 }

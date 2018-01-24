@@ -3,10 +3,7 @@ package com.atbs.customer;
 import com.atbs.base.BaseEntity;
 import com.atbs.booking.Booking;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -25,7 +22,7 @@ public class Customer extends BaseEntity {
     @Column(name = "dob")
     private Date dob;
 
-    @OneToOne(mappedBy = "customer")
+    @OneToOne
     private Booking booking;
 
     public String getFullName() {
