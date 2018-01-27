@@ -34,6 +34,20 @@ public class CompanyServiceImpl extends BaseServiceImpl<Company> implements Comp
         return company;
     }
 
+    @Override
+    public void activate(Long id) {
+        Company company = findOne(id);
+        company.setActive(true);
+        super.save(company);
+    }
+
+    @Override
+    public void deactivate(Long id) {
+        Company company = findOne(id);
+        company.setActive(false);
+        super.save(company);
+    }
+
     private void validate(CompanyItem item, Company company) {
         if (!item.getName().isEmpty()) company.setName(item.getName());
     }

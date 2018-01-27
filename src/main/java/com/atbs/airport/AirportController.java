@@ -26,9 +26,9 @@ public class AirportController {
         return service.findOne(id);
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public void save(@RequestBody AirportItem item) {
-        service.create(item);
+    @PostMapping(value = "/create")
+    public Airport save(@RequestBody AirportItem item) {
+        return service.create(item);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)

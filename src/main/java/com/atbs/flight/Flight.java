@@ -32,12 +32,12 @@ public class Flight extends BaseEntity {
     //Aeroplane
     //bookings
 
-   // @OneToMany(mappedBy = "flight")
-    //private List<Booking> bookings;
+    @OneToMany(mappedBy = "flight",fetch = FetchType.LAZY)
+    private List<Booking> bookings;
 
-   /* @ManyToOne(fetch = FetchType.EAGER)
+   @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "airport_id")
-    private Airport airport;*/
+    private Airport airport;
 
     public Date getDate() {
         return date;
@@ -79,19 +79,19 @@ public class Flight extends BaseEntity {
         this.price = price;
     }
 
-   /* public List<Booking> getBookings() {
+    public List<Booking> getBookings() {
         return bookings;
     }
 
     public void setBookings(List<Booking> bookings) {
         this.bookings = bookings;
-    }*/
+    }
 
-  /*  public Airport getAirport() {
+   public Airport getAirport() {
         return airport;
     }
 
     public void setAirport(Airport airport) {
         this.airport = airport;
-    }*/
+    }
 }

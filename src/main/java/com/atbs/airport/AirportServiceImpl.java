@@ -25,10 +25,11 @@ public class AirportServiceImpl extends BaseServiceImpl<Airport> implements Airp
     }
 
     @Override
-    public void create(AirportItem item) {
-        Airport company = new Airport();
-        validate(item, company);
-        super.save(company);
+    public Airport create(AirportItem item) {
+        Airport airport = new Airport();
+        validate(item, airport);
+        super.save(airport);
+        return airport;
     }
 
     @Override
@@ -40,6 +41,7 @@ public class AirportServiceImpl extends BaseServiceImpl<Airport> implements Airp
 
     private void validate(AirportItem item, Airport airport) {
         if (!item.getName().isEmpty()) airport.setName(item.getName());
+        if (!item.getLocation().isEmpty()) airport.setLocation(item.getLocation());
     }
 
     public Airport findByName(String name){

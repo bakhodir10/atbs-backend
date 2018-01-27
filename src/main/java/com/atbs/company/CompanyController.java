@@ -33,4 +33,14 @@ public class CompanyController {
     public Company update(@PathVariable Long id, @RequestBody CompanyItem item) {
         return service.update(id, item);
     }
+
+    @RequestMapping(value = "/activate", method = RequestMethod.POST)
+    public void activate(@RequestBody CompanyItem item) {
+        service.activate(item.getId());
+    }
+
+    @RequestMapping(value = "/deactivate", method = RequestMethod.POST)
+    public void deactivate(@RequestBody CompanyItem item) {
+        service.deactivate(item.getId());
+    }
 }

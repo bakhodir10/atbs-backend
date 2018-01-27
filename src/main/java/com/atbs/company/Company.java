@@ -2,13 +2,10 @@ package com.atbs.company;
 
 import com.atbs.airport.Airport;
 import com.atbs.base.BaseEntity;
-import com.atbs.booking.Booking;
 import com.atbs.companyAdminUser.CompanyAdminUser;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -18,10 +15,15 @@ public class Company extends BaseEntity {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "company")
+    @Column(name = "is_active", columnDefinition="boolean default false")
+    private boolean active;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "company", fetch = FetchType.LAZY)
     private List<Airport> airports;
 
-    @OneToMany(mappedBy = "company")
+    @JsonIgnore
+    @OneToMany(mappedBy = "company", fetch = FetchType.LAZY)
     private List<CompanyAdminUser> adminUsers;
 
     public String getName() {
@@ -38,5 +40,21 @@ public class Company extends BaseEntity {
 
     public void setAirports(List<Airport> airports) {
         this.airports = airports;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public List<CompanyAdminUser> getAdminUsers() {
+        return adminUsers;
+    }
+
+    public void setAdminUsers(List<CompanyAdminUser> adminUsers) {
+        this.adminUsers = adminUsers;
     }
 }

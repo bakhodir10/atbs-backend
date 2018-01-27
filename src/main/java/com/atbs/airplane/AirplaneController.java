@@ -1,8 +1,5 @@
 package com.atbs.airplane;
 
-import com.atbs.company.Company;
-import com.atbs.company.CompanyItem;
-import com.atbs.company.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,9 +23,9 @@ public class AirplaneController {
         return service.findOne(id);
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public void save(@RequestBody AirplaneItem item) {
-        service.create(item);
+    @PostMapping(value = "/create")
+    public void save(@RequestBody AirplaneItem airplane) {
+        service.create(airplane);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
