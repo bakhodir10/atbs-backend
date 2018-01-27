@@ -8,4 +8,6 @@ public interface AirportService extends BaseService<Airport> {
     void create(AirportItem item);
 
     Airport update(Long id, AirportItem item);
+
+    Airport findByName(String name);
 }

@@ -41,4 +41,8 @@ public class AirportServiceImpl extends BaseServiceImpl<Airport> implements Airp
     private void validate(AirportItem item, Airport airport) {
         if (!item.getName().isEmpty()) airport.setName(item.getName());
     }
+
+    public Airport findByName(String name){
+        return repository.findByName(name);
+    }
 }

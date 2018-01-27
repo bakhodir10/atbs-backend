@@ -1,6 +1,5 @@
 package com.atbs.customer;
 
-
 import com.atbs.company.Company;
 import com.atbs.company.CompanyItem;
 import com.atbs.company.CompanyService;

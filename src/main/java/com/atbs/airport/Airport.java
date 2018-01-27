@@ -19,8 +19,8 @@ public class Airport extends BaseEntity {
     @Column(name = "location")
     private String location;
 
-    @OneToMany(mappedBy = "airport")
-    private List<Flight> flights;
+//    @OneToMany(mappedBy = "airport")
+//    private List<Flight> flights;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "company_id")
@@ -42,13 +42,13 @@ public class Airport extends BaseEntity {
         this.location = location;
     }
 
-    public List<Flight> getFlights() {
-        return flights;
-    }
-
-    public void setFlights(List<Flight> flights) {
-        this.flights = flights;
-    }
+//    public List<Flight> getFlights() {
+//        return flights;
+//    }
+//
+//    public void setFlights(List<Flight> flights) {
+//        this.flights = flights;
+//    }
 
     public Company getCompany() {
         return company;
