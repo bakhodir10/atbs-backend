@@ -52,15 +52,15 @@ public class FlightServiceImpl implements FlightService {
         return repository.findOne(id).getFlightItem();
     }
 
-    public Iterable<Flight> search(String flyingFrom, String flyingTo, Date date) {
-        List<Flight> flightList = new ArrayList<>();
+    public Iterable<FlightItem> search(String flyingFrom, String flyingTo, Date date) {
+        List<FlightItem> flightList = new ArrayList<>();
         Iterable<Flight> iFlightList = repository.findAll();
 
         for (Flight flight : iFlightList) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 
             if (flight.getFrom().getLocation().toLowerCase().contains(flyingFrom.toLowerCase()) && flight.getTo().getLocation().toLowerCase().contains(flyingTo.toLowerCase()) && sdf.format(flight.getDate()).equals(sdf.format(date))) {
-                flightList.add(flight);
+                flightList.add(flight.getFlightItem());
             }
         }
         return flightList;

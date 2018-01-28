@@ -6,7 +6,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Date;
 
-@Getter
 @MappedSuperclass
 public abstract class BaseEntity {
 
@@ -21,4 +20,8 @@ public abstract class BaseEntity {
     @Setter
     @Column(name = "modified_at")
     private Date modifiedAt;
+
+    public Long getId() {
+        return id;
+    }
 }

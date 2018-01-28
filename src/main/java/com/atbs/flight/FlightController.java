@@ -29,7 +29,7 @@ public class FlightController {
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public Iterable<Flight> search(@RequestParam String flyingFrom, @RequestParam String flyingTo,  Date date) {
+    public Iterable<FlightItem> search(@RequestParam String flyingFrom, @RequestParam String flyingTo,  Date date) {
         return service.search(flyingFrom, flyingTo, date);
     }
 

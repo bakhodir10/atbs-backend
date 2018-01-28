@@ -12,5 +12,5 @@ public interface FlightService {
 
     FlightItem findOne(Long id);
 
-    Iterable<Flight> search(String flyingFrom, String flyingTo, Date date);
+    Iterable<FlightItem> search(String flyingFrom, String flyingTo, Date date);
 }
