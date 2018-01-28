@@ -35,4 +35,5 @@ public class AdminUserController {
     public AdminUser update(@PathVariable Long id, @RequestBody AdminUserItem item) {
         return service.update(id, item);
     }
+
 }

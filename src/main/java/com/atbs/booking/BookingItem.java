@@ -7,7 +7,6 @@ import com.atbs.flight.FlightItem;
 public class BookingItem {
     private CustomerItem customer;
     private FlightItem flight;
-
     public CustomerItem getCustomer() {
         return customer;
     }
