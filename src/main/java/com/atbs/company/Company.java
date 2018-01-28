@@ -19,11 +19,11 @@ public class Company extends BaseEntity {
     private boolean active;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "company", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "company")
     private List<Airport> airports;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "company", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "company")
     private List<CompanyAdminUser> adminUsers;
 
     public String getName() {

@@ -24,8 +24,8 @@ public class AirplaneController {
     }
 
     @PostMapping(value = "/create")
-    public void save(@RequestBody AirplaneItem airplane) {
-        service.create(airplane);
+    public Airplane save(@RequestBody AirplaneItem airplane) {
+        return service.create(airplane);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)

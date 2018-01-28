@@ -1,8 +1,5 @@
 package com.atbs.airport;
 
-import com.atbs.company.Company;
-import com.atbs.company.CompanyItem;
-import com.atbs.company.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

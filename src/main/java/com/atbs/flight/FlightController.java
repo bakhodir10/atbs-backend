@@ -19,12 +19,12 @@ public class FlightController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public Iterable<Flight> getList() {
+    public Iterable<FlightItem> getList() {
         return service.findAll();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Flight getOne(@PathVariable Long id) {
+    public FlightItem getOne(@PathVariable Long id) {
         return service.findOne(id);
     }
 

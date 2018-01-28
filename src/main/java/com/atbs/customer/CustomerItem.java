@@ -1,14 +1,11 @@
 package com.atbs.customer;
 
-import com.atbs.booking.Booking;
-
 import java.util.Date;
 
 public class CustomerItem {
     private String fullName;
     private String email;
     private Date dob;
-    private Booking booking;
 
     public String getFullName() {
         return fullName;
@@ -34,11 +31,4 @@ public class CustomerItem {
         this.dob = dob;
     }
 
-    public Booking getBooking() {
-        return booking;
-    }
-
-    public void setBooking(Booking booking) {
-        this.booking = booking;
-    }
 }

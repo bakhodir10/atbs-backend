@@ -20,10 +20,11 @@ public class AirplaneServiceImpl extends BaseServiceImpl<Airplane> implements Ai
     }
 
     @Override
-    public void create(AirplaneItem item) {
+    public Airplane create(AirplaneItem item) {
         Airplane airplane = new Airplane();
         fill(item, airplane);
         super.save(airplane);
+        return airplane;
     }
 
     @Override

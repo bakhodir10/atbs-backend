@@ -2,6 +2,7 @@ package com.atbs.customer;
 
 import com.atbs.base.BaseEntity;
 import com.atbs.booking.Booking;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -22,6 +23,7 @@ public class Customer extends BaseEntity {
     @Column(name = "dob")
     private Date dob;
 
+    @JsonIgnore
     @OneToOne
     private Booking booking;
 

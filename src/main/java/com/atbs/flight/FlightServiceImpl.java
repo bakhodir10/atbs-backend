@@ -1,23 +1,17 @@
 package com.atbs.flight;
 
-import com.atbs.airport.Airport;
 import com.atbs.airport.AirportRepository;
-import com.atbs.base.BaseRepository;
-import com.atbs.base.BaseServiceImpl;
-import com.atbs.company.Company;
-import com.atbs.company.CompanyItem;
-import com.atbs.company.CompanyRepository;
-import com.atbs.company.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.text.DateFormat;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import  java.util.List;
+import java.util.LinkedList;
+import java.util.List;
 
 @Service
-public class FlightServiceImpl extends BaseServiceImpl<Flight> implements FlightService {
+public class FlightServiceImpl implements FlightService {
 
     private FlightRepository repository;
     private AirportRepository airportRepository;
@@ -28,41 +22,51 @@ public class FlightServiceImpl extends BaseServiceImpl<Flight> implements Flight
     }
 
     @Autowired
-    public void setAirportRepository(AirportRepository airportRepository){this.airportRepository = airportRepository;}
-
-    @Override
-    protected BaseRepository<Flight> getRepository() {
-        return repository;
+    public void setAirportRepository(AirportRepository airportRepository) {
+        this.airportRepository = airportRepository;
     }
 
     @Override
     public void create(FlightItem item) {
         Flight company = new Flight();
         //validate(item, company);
-        super.save(company);
+        this.repository.save(company);
     }
 
     @Override
     public Flight update(Long id, FlightItem item) {
-        Flight company = findOne(id);
-       // validate(item, company);
+        Flight company = repository.findOne(id);
+        // validate(item, company);
         return company;
     }
 
-    public Iterable<Flight> search(String flyingFrom, String flyingTo, Date date){
+    @Override
+    public List<FlightItem> findAll() {
+        List<FlightItem> items = new LinkedList<>();
+        repository.findAll().forEach(e -> items.add(e.getFlightItem()));
+        return items;
+    }
+
+    @Override
+    public FlightItem findOne(Long id) {
+        return repository.findOne(id).getFlightItem();
+    }
+
+    public Iterable<Flight> search(String flyingFrom, String flyingTo, Date date) {
         List<Flight> flightList = new ArrayList<>();
         Iterable<Flight> iFlightList = repository.findAll();
 
-        for(Flight flight : iFlightList){
+        for (Flight flight : iFlightList) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 
-            if(flight.getFrom().getLocation().toLowerCase().contains(flyingFrom.toLowerCase()) && flight.getTo().getLocation().toLowerCase().contains(flyingTo.toLowerCase()) &&sdf.format(flight.getDate()).equals(sdf.format(date))){
+            if (flight.getFrom().getLocation().toLowerCase().contains(flyingFrom.toLowerCase()) && flight.getTo().getLocation().toLowerCase().contains(flyingTo.toLowerCase()) && sdf.format(flight.getDate()).equals(sdf.format(date))) {
                 flightList.add(flight);
             }
         }
-
-        return  flightList;
+        return flightList;
     }
+
+
 
 
     /*private void validate(FlightItem item, Flight flight) {

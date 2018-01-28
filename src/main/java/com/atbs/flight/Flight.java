@@ -1,43 +1,38 @@
 package com.atbs.flight;
 
 import com.atbs.airport.Airport;
+import com.atbs.airport.AirportItem;
 import com.atbs.base.BaseEntity;
-import com.atbs.booking.Booking;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "flight")
 public class Flight extends BaseEntity {
     @Column(name = "date")
     @NotNull
-    private Date date;
+    private Date date; // todo why do we need this, we already have time property below ???
+
     @Column(name = "time")
     @NotNull
     private String time;
+
     @Column(name = "price")
     @NotNull
     private double price;
 
-    //Airport from;
-    //Airport to;
+    @JsonIgnore
     @OneToOne
+    @JoinColumn(name = "from_id", referencedColumnName = "id")
     private Airport from;
+
+    @JsonIgnore
     @OneToOne
+    @JoinColumn(name = "to_id", referencedColumnName = "id")
     private Airport to;
-
-    //Aeroplane
-    //bookings
-
-    @OneToMany(mappedBy = "flight",fetch = FetchType.LAZY)
-    private List<Booking> bookings;
-
-   @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "airport_id")
-    private Airport airport;
 
     public Date getDate() {
         return date;
@@ -79,19 +74,25 @@ public class Flight extends BaseEntity {
         this.price = price;
     }
 
-    public List<Booking> getBookings() {
-        return bookings;
-    }
+    public FlightItem getFlightItem() {
+        FlightItem item = new FlightItem();
+        item.setId(getId());
+        item.setTime(this.time);
+        item.setDate(this.date);
+        item.setPrice(this.price);
 
-    public void setBookings(List<Booking> bookings) {
-        this.bookings = bookings;
-    }
+        AirportItem from = new AirportItem();
+        from.setId(this.from.getId());
+        from.setName(this.from.getName());
+        from.setLocation(this.from.getLocation());
+        item.setFrom(from);
 
-   public Airport getAirport() {
-        return airport;
-    }
+        AirportItem to = new AirportItem();
+        to.setId(this.to.getId());
+        to.setName(this.to.getName());
+        to.setLocation(this.to.getLocation());
+        item.setTo(to);
 
-    public void setAirport(Airport airport) {
-        this.airport = airport;
+        return item;
     }
 }

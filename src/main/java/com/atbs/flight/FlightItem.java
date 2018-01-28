@@ -1,19 +1,16 @@
 package com.atbs.flight;
 
-import com.atbs.airport.Airport;
-import com.atbs.booking.Booking;
+import com.atbs.airport.AirportItem;
 
 import java.util.Date;
-import java.util.List;
 
 public class FlightItem {
+    private Long id;
     private Date date;
     private String time;
     private double price;
-    private Airport from;
-    private Airport to;
-    private List<Booking> bookings;
-    private Airport airport;
+    private AirportItem from;
+    private AirportItem to;
 
     public Date getDate() {
         return date;
@@ -21,22 +18,6 @@ public class FlightItem {
 
     public void setDate(Date date) {
         this.date = date;
-    }
-
-    public Airport getFrom() {
-        return from;
-    }
-
-    public void setFrom(Airport from) {
-        this.from = from;
-    }
-
-    public Airport getTo() {
-        return to;
-    }
-
-    public void setTo(Airport to) {
-        this.to = to;
     }
 
     public String getTime() {
@@ -55,19 +36,27 @@ public class FlightItem {
         this.price = price;
     }
 
-    public List<Booking> getBookings() {
-        return bookings;
+    public Long getId() {
+        return id;
     }
 
-    public void setBookings(List<Booking> bookings) {
-        this.bookings = bookings;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Airport getAirport() {
-        return airport;
+    public void setFrom(AirportItem from) {
+        this.from = from;
     }
 
-    public void setAirport(Airport airport) {
-        this.airport = airport;
+    public void setTo(AirportItem to) {
+        this.to = to;
+    }
+
+    public AirportItem getFrom() {
+        return from;
+    }
+
+    public AirportItem getTo() {
+        return to;
     }
 }

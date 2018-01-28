@@ -3,10 +3,9 @@ package com.atbs.booking;
 import com.atbs.base.BaseEntity;
 import com.atbs.customer.Customer;
 import com.atbs.flight.Flight;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "booking")
@@ -14,10 +13,12 @@ public class Booking extends BaseEntity {
     //flight
     //customer
 
+    @JsonIgnore
     @OneToOne
     private Customer customer;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnore
+    @ManyToOne
     @JoinColumn(name = "flight_id")
     private Flight flight;
 
