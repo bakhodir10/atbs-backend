@@ -28,4 +28,13 @@ public class AirportItem {
     public void setLocation(String location) {
         this.location = location;
     }
+
+    public Airport getEntity(){
+        Airport airport = new Airport();
+        airport.setId(this.id);
+        airport.setName(this.name);
+        airport.setLocation(this.location);
+
+        return  airport;
+    }
 }

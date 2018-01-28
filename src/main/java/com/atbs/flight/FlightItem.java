@@ -59,4 +59,16 @@ public class FlightItem {
     public AirportItem getTo() {
         return to;
     }
+
+    public Flight getEntity(){
+        Flight flight = new Flight();
+        flight.setId(this.id);
+        flight.setDate(this.date);
+        flight.setTime(this.time);
+        flight.setFrom(this.from.getEntity());
+        flight.setTo(this.to.getEntity());
+        flight.setPrice(this.price);
+
+        return flight;
+    }
 }

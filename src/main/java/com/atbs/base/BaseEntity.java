@@ -21,6 +21,10 @@ public abstract class BaseEntity {
     @Column(name = "modified_at")
     private Date modifiedAt;
 
+    public void setId(Long id){
+        this.id = id;
+    }
+
     public Long getId() {
         return id;
     }

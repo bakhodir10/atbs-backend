@@ -27,8 +27,8 @@ public class BookingController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public void save(@RequestBody BookingItem item) {
-        service.create(item);
+    public Long save(@RequestBody BookingItem item) {
+        return service.create(item);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)

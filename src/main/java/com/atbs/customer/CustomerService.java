@@ -5,7 +5,7 @@ import com.atbs.company.Company;
 import com.atbs.company.CompanyItem;
 
 public interface CustomerService extends BaseService<Customer> {
-    void create(CustomerItem item);
+    Customer create(CustomerItem item);
 
     Customer update(Long id, CustomerItem item);
 }

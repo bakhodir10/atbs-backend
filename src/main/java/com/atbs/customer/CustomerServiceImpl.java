@@ -25,10 +25,12 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer> implements Cu
     }
 
     @Override
-    public void create(CustomerItem item) {
+    public Customer create(CustomerItem item) {
         Customer customer = new Customer();
         validate(item, customer);
         super.save(customer);
+
+        return customer;
     }
 
     @Override
@@ -39,6 +41,10 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer> implements Cu
     }
 
     private void validate(CustomerItem item, Customer customer) {
-        if (!item.getFullName().isEmpty()) customer.setFullName(item.getFullName());
+        if (!item.getFullName().isEmpty()) {
+            customer.setFullName(item.getFullName());
+            customer.setEmail(item.getEmail());
+            customer.setDob(item.getDob());
+        }
     }
 }
