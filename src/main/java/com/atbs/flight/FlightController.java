@@ -34,8 +34,8 @@ public class FlightController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public void save(@RequestBody FlightItem item) {
-        service.create(item);
+    public FlightItem save(@RequestBody FlightItem item) {
+        return service.create(item);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)

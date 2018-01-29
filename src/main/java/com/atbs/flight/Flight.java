@@ -30,7 +30,7 @@ public class Flight extends BaseEntity {
     private Airport from;
 
     @JsonIgnore
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "to_id", referencedColumnName = "id")
     private Airport to;
 
@@ -76,23 +76,26 @@ public class Flight extends BaseEntity {
 
     public FlightItem getFlightItem() {
         FlightItem item = new FlightItem();
-        item.setId(getId());
+        if (getId() != null) item.setId(getId());
         item.setTime(this.time);
         item.setDate(this.date);
         item.setPrice(this.price);
 
-        AirportItem from = new AirportItem();
-        from.setId(this.from.getId());
-        from.setName(this.from.getName());
-        from.setLocation(this.from.getLocation());
-        item.setFrom(from);
+        if (this.from != null) {
+            AirportItem from = new AirportItem();
+            from.setId(this.from.getId());
+            from.setName(this.from.getName());
+            from.setLocation(this.from.getLocation());
+            item.setFrom(from);
+        }
 
-        AirportItem to = new AirportItem();
-        to.setId(this.to.getId());
-        to.setName(this.to.getName());
-        to.setLocation(this.to.getLocation());
-        item.setTo(to);
-
+        if (this.to != null) {
+            AirportItem to = new AirportItem();
+            to.setId(this.to.getId());
+            to.setName(this.to.getName());
+            to.setLocation(this.to.getLocation());
+            item.setTo(to);
+        }
         return item;
     }
 }

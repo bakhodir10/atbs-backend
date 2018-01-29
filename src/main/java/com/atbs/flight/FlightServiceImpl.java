@@ -1,5 +1,6 @@
 package com.atbs.flight;
 
+import com.atbs.airport.Airport;
 import com.atbs.airport.AirportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,10 +28,11 @@ public class FlightServiceImpl implements FlightService {
     }
 
     @Override
-    public void create(FlightItem item) {
+    public FlightItem create(FlightItem item) {
         Flight company = new Flight();
-        //validate(item, company);
+        validate(item, company);
         this.repository.save(company);
+        return item;
     }
 
     @Override
@@ -66,10 +68,17 @@ public class FlightServiceImpl implements FlightService {
         return flightList;
     }
 
-
-
-
-    /*private void validate(FlightItem item, Flight flight) {
-        if (!item.getDate().isEmpty()) company.setName(item.getName());
-    }*/
+    private void validate(FlightItem item, Flight flight) {
+        if (item.getDate() != null) flight.setDate(item.getDate());
+        if (item.getTime() != null) flight.setTime(item.getTime());
+        if (item.getFrom() != null) {
+            Airport from = airportRepository.findOne(item.getFrom().getId());
+            flight.setFrom(from);
+        }
+        if (item.getTime() != null) {
+            Airport to = airportRepository.findOne(item.getTo().getId());
+            flight.setTo(to);
+        }
+        flight.setPrice(item.getPrice());
+    }
 }

@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 public interface FlightService {
-    void create(FlightItem item);
+    FlightItem create(FlightItem item);
 
     Flight update(Long id, FlightItem item);
 
